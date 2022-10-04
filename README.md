@@ -58,18 +58,29 @@ from django.urls import path, include #include 추가
 # articles/urls.py에 있는 urlpatterns를 그대로 땡겨온다.
 path('articles/', include('articles.urls'))
 ```
-
 #### 2. articles/urls.py 생성
-
 ```python
+from django.urls import path
+from . import views
 # 추가적으로 활용하기 위해 name 설정
 app_name = 'articles'
 
 urlpatterns = [
-  
+  # ''url주소가 들어오면 views.index 함수를 실행시켜줘
+  path('', views.index, name='index'),
 ]
-
 ```
+#### 3. articles/views.py
+```python
+def index(request):
+    pass
+```
+
+#### 4. articles/templates/articles/index.html
+
+
+
+
 ## 3. Model 정의 (DB 설계)
 
 ### 1. 클래스 정의
