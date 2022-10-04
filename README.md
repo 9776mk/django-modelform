@@ -34,9 +34,7 @@ LANGUAGE_CODE = 'ko-kr'
 TIME_ZONE = 'Asia/Seoul'
 ```
 
-
 ## 2. articles app
-
 ### 1. app 생성
 ```bash
 $ django-admin startapp articles
@@ -49,7 +47,6 @@ INSTALLED_APPS = [
     'articles',
 ]
 ```
-
 ### 3. urls.py 설정
 #### 1. pjt/urls.py
 ```python
@@ -75,28 +72,50 @@ urlpatterns = [
 def index(request):
     pass
 ```
-
 #### 4. articles/templates/articles/index.html
-
-
-
+- html로 만들기
 
 ## 3. Model 정의 (DB 설계)
-
 ### 1. 클래스 정의
+- 기능을 먼저 생각한 후 model 생성
+- 기능 : '''
+  - 제목(20글자이내)
+  - 내용(긴 글)
+  - 글 작성시간/수정시간(자동으로 기록, 날짜/ 시간)
+
+```python
+class Article(models.Model):
+    title = models.CharField(max_lenght=20)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+```
 
 ### 2. 마이그레이션 파일 생성
+```bash
+python manage.py makemigrations
+```
 
 ### 3. DB 반영(`migrate`)
+```bash
+python manage.py migrate
+```
 
+- 마이그레이션 확인
+```bash
+python manage.py showmigrations
+```
 ## 4. CRUD 기능 구현
+- 기능을 만들고 싶다면 URL에 매핑되는 view함수를 하나씩 가져야 한다!
+
 
 ### 1. 게시글 생성
 
-> 사용자에게 HTML Form 제공, 입력받은 데이터를 처리 (ModelForm 로직으로 변경)
+> 사용자에게 HTML Form 제공, 입력받은 데이터를 처리 
+> ModelForm 로직으로 변경
 
 #### 1. HTML Form 제공
-
+- new.html에 form 생성
 > http://127.0.0.1:8000/articles/new/
 
 #### 2. 입력받은 데이터 처리

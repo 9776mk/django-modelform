@@ -1,0 +1,17 @@
+<h1> 글쓰기 </h1>
+
+<!-- form : 사용자에게 양식을 제공하고
+  값을 받아서(input : name, value)
+  서버에 전송(form : action)-->
+
+<!-- 
+<form action="/articles/create/"> 
+로 써도 가능하지만, url이 변하거나 path 구성이 변하면
+다 찾아가서 바꿔야 하기때문에 아래와 같이 선언-->
+<form action="{% url 'articles:create' %}">
+  <label for="title">제목 : </label>
+  <input type="text" name="title" id="title">
+  <label for="content">내용 : </label>
+  <textarea name="content" id="content" cols="30" rows="10"></textarea>
+  <input type="submit" value="글쓰기">
+</form>
