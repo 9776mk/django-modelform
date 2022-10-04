@@ -40,10 +40,26 @@ TIME_ZONE = 'Asia/Seoul'
 ## 2. articles app
 
 ### 1. app 생성
+```bash
+$ django-admin startapp articles
+```
 
 ### 2. app 등록
+pjt/settings.py
+```python
+INSTALLED_APPS = [
+    'articles',
+]
+```
 
 ### 3. urls.py 설정
+```python
+from django.urls import path, include #include 추가
+
+# articles라는 주소로 들어오면 articles라는 앱에서 진행하고 싶어
+path('articles/', include('articles.urls'))
+
+```
 
 ## 3. Model 정의 (DB 설계)
 
