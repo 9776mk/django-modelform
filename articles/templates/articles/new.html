@@ -2,13 +2,22 @@
 
 <!-- form : 사용자에게 양식을 제공하고
   값을 받아서(input : name, value)
-  서버에 전송(form : action)-->
+  서버에 전송(form : action, )-->
 
 <!-- 
-<form action="/articles/create/"> 
-로 써도 가능하지만, url이 변하거나 path 구성이 변하면
-다 찾아가서 바꿔야 하기때문에 아래와 같이 선언-->
-<form action="{% url 'articles:create' %}">
+  1. <form action="/articles/create/"> 로 
+  작성해도 가능하지만, url이 변하거나 path 구성이 변하면
+  하나씩 찾아가서 바꿔야 하기때문에 아래와 같이 선언
+-->
+
+<!-- 
+  2. <form action="{% url 'articles:create' %}"> 
+  GET : 어떤 리소스의 표현, 데이터를 조회하는 데 사용
+  POST : 서버에 상태나 변화를 일으킴. 어떤 리소스(Article)의 entity를 제출함.
+  여기서는 Article에 값을 반영하므로, 전송을 하는 폼의 method="POST"를 이용
+-->
+<form action="{% url 'articles:create' %}" method="POST">
+  {% csrf_token %}
   <label for="title">제목 : </label>
   <input type="text" name="title" id="title">
   <label for="content">내용 : </label>

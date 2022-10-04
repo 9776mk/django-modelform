@@ -118,6 +118,10 @@ python manage.py showmigrations
 - new.html에 form 생성
 > http://127.0.0.1:8000/articles/new/
 
+- method을 POST로 바꾼다면 csrf token을 적어야 함
+  - POST는 무언가를 저장하거나 전송할 때
+  - GET은 데이터베이스에서 불러올 때 
+
 #### 2. 입력받은 데이터 처리
 
 > http://127.0.0.1:8000/articles/create/

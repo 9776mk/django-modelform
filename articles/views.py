@@ -22,8 +22,15 @@ def new(request):
 
 def create(request):
     # DB에 저장하는 로직
-    title = request.GET.get('title')
-    content = request.GET.get('content')
+    # GET을 사용할 때 받는 방법
+    # title = request.GET.get('title')
+    # content = request.GET.get('content')
+
+    # POST를 사용할 때는 POST.get으로 바꿔줘야 함!
+    title = request.POST.get('title')
+    content = request.POST.get('content')
+
+
     # Models.py에서 생성한 DB(Article)에 저장하기
     # DB를 사용하기 위해 위쪽에 Article을 import 해오기
     Article.objects.create(title=title, content=content)
