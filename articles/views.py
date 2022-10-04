@@ -94,10 +94,23 @@ def detail(request, pk):
     return render(request, 'articles/detail.html', context)
 
 def update(request, pk):
-    # GET : Form을 제공
     article = Article.objects.get(pk=pk)
-    article_form = ArticleForm(instance=article)
+    if request.method == 'POST':
+        # POST : input 값 가져와서, 검증하고, DB에 저장
+        article_form = ArticleForm(request.POST, instance=article) # 인스턴스를 주지않으면 생성이 됨
+        # 유효성 검사 통과하면 상세보기 페이지로
+        if article_form.is_valid():
+            article_form.save()
+            return redirect('articles:detail', article.pk)
+        # 유효성 검사 통과 못하면 => context부터 오류메시지 담긴 article_form을 랜더링
+    else:
+        # GET : Form을 제공
+        article_form = ArticleForm(instance=article)
+
     context = {
         'article_form' : article_form
     }
     return render(request, 'articles/update.html', context)
+
+
+    # Update와 Create에서 instance만 달라진다!
