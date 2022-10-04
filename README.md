@@ -35,8 +35,6 @@ TIME_ZONE = 'Asia/Seoul'
 ```
 
 
-
-
 ## 2. articles app
 
 ### 1. app 생성
@@ -53,14 +51,25 @@ INSTALLED_APPS = [
 ```
 
 ### 3. urls.py 설정
+#### 1. pjt/urls.py
 ```python
 from django.urls import path, include #include 추가
-
 # articles라는 주소로 들어오면 articles라는 앱에서 진행하고 싶어
+# articles/urls.py에 있는 urlpatterns를 그대로 땡겨온다.
 path('articles/', include('articles.urls'))
-
 ```
 
+#### 2. articles/urls.py 생성
+
+```python
+# 추가적으로 활용하기 위해 name 설정
+app_name = 'articles'
+
+urlpatterns = [
+  
+]
+
+```
 ## 3. Model 정의 (DB 설계)
 
 ### 1. 클래스 정의
