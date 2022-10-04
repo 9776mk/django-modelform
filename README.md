@@ -112,7 +112,6 @@ python manage.py showmigrations
 ### 1. 게시글 생성
 
 > 사용자에게 HTML Form 제공, 입력받은 데이터를 처리 
-> ModelForm 로직으로 변경
 
 #### 1. HTML Form 제공
 - new.html에 form 생성
@@ -122,11 +121,18 @@ python manage.py showmigrations
   - POST는 무언가를 저장하거나 전송할 때
   - GET은 데이터베이스에서 불러올 때 
 
+- input에 required추가(<input type="text" name="title" id="title" required>)하면사용자가 입력하지 않을 경우 요청하게됨
+
 #### 2. 입력받은 데이터 처리
 
 > http://127.0.0.1:8000/articles/create/
 
 > 게시글 DB에 생성하고 index 페이지로 redirect
+
+#### 3. ModelForm 로직으로 변경
+
+- articles/forms.py 생성
+- views.py의 불러오기를 담당하는 new 함수에 ModelForm을 사용하기 위한 코드 추가
 
 ### 2. 게시글 목록
 

@@ -10,7 +10,8 @@
 
 <body>
   <h1> 게시판 </h1>
-  <a href="{% url 'articles:new' %}"> 글 쓰기 </a>
+  <!-- 원래 있던 articles:new는 create와 new를 합치면서 삭제함-->
+  <a href="{% url 'articles:create' %}"> 글 쓰기 </a>
 
   {% for article in articles %}
   <h3> {{ article.title }}</h3>
